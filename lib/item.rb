@@ -2,11 +2,21 @@ class Item
 
   @@items = {}
 
-  def initialize(code, name, price)
+  attr_accessor :code, :name, :price, :offer_code
+
+  def initialize(code, name, price, offer_code = nil)
     @code = code
     @name = name
     @price = price
-    @@items += { code => self }
+    @offer_code = offer_code
+    @@items.merge!({ code => self })
   end
 
+  def self.get(code)
+    @@items[code]
+  end
+
+  def self.all()
+    @@items
+  end
 end

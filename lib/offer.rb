@@ -3,20 +3,17 @@ class Offer
   #Ya que esto es solo una demostracion, para probar el codigo sin necesidad de base de datos usamos un hash
   @@offers = {}
 
-  attr_accessor :name, :formula
+  attr_accessor :code, :name, :formula
 
-  def initialize(name, &formula)
+  def initialize(code, name, formula)
+    @code = code
     @name = name
     @formula = formula
-    @@offers += { name => self }
+    @@offers.merge!({ code => self })
   end
 
-  def calc(item, amount)
-    x
-  end
-
-  def self.get(name)
-    @@offers[name]
+  def self.get(code)
+    @@offers[code]
   end
 
   def self.all
